@@ -1,0 +1,7 @@
+public class Cashier{
+  private int customerServed;
+  private int totalCustomerWaitTime;
+  private int totalItemsServed;
+  private Customer currentCustomer;
+  private Queue queue = new ArrayQueue();
+  

@@ -1,0 +1,16 @@
+public class Cashiers{
+  
+  private static final String nl = System.getProperty("line.seperator");
+  
+  private Cashier[] cashiers;
+  
+  public Cashiers(int nb){
+    
+    if(nb<1){
+      throw new IllegalArgumentException(Integer.toString(nb));
+      
+    }
+    
+    cashiers = new Cashier[nb];
+    
+    

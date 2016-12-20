@@ -1,0 +1,50 @@
+// Copies the content of a source file onto a destination file.
+
+import java.io.*;
+
+public class Copy {
+// Modify this class 
+  
+    public static void copy( String fileName ) 
+        throws IOException, FileNotFoundException {
+
+        InputStreamReader input;
+
+        input = new InputStreamReader( new FileInputStream( src ) );
+        
+        OutputStreamWriter output;
+        
+        output = new OutputStreamWriter(new FileOutputSteam(dst));
+        
+        
+          
+          
+          
+        int c;
+        while ( ( c = input.read() ) != -1 ) {
+            output.write( c );
+        }
+
+        input.close();
+        output.closer();
+        
+    }
+
+    public static void main( String[] args ) 
+        throws IOException, FileNotFoundException {
+
+        if ( args.length != 2 ) {
+            System.out.println( "Usage: java Copy src dst" );
+            System.exit( 0 );
+        }
+
+        copy( args[0], args[1] );
+
+    }
+}
+
+// From the command line.
+// > java Copy Copy.java Cat.java
+//
+// Alternatively, from the interaction window of DrJava.
+// Copy.copy( "Copy.java",  "Cat.java" );

@@ -1,0 +1,31 @@
+import java.util.random;
+
+public class Customer{
+  private int arrivalTime;
+  private int initialNumberOfItems;
+  private int numberOfItems;
+  private static final int MAX_NUM_ITEMS;
+  
+  public Customer(){
+    
+  }
+  
+  public int getArrivalTime(){
+    return this.arrivalTime
+      
+  }
+  
+  public int getNumberOfItems(){
+    return this.numberOfItems
+  }
+  
+  public int getNumberOfServedItems(){
+    for (int i; i<= numberOfItems; i++)
+      numberOfItems = numberOfItems + i;
+    return numberOfItems;
+  }
+  
+  public void serve(){
+    
+    
+  }
