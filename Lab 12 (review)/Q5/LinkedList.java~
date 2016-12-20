@@ -1,0 +1,71 @@
+package review;
+
+public class LinkedList<E> {
+ private static class Node<T> { // implementation of the doubly linked nodes
+  private T value;
+  private Node<T> previous;
+  private Node<T> next;
+  private Node( T value, Node<T> previous, Node<T> next ) {
+   this.value = value;
+   this.previous = previous;
+   this.next = next;
+  }
+ }
+ private Node<E> head;
+ private int size;
+ public LinkedList() {
+  head = new Node<E>( null, null, null );
+  head.next = head.previous = head;
+  size = 0;
+ }
+   
+   public boolean addFirst( E obj ) {
+     
+     if ( obj == null ) {
+       throw new IllegalArgumentException( "null" );
+     }
+     
+     Node<E> before = head;
+     Node<E> after = head.next;
+     
+     before.next = new Node<E>( obj, before, after );
+     after.previous = before.next;
+     
+     size++;
+     
+     return true;
+   }
+   
+   // converts the list to string
+   public String toString() {
+      StringBuffer answer = new StringBuffer( "[" );
+      Node<E> p = head.next;
+      while ( p != head ) {
+        if ( p != head.next ) {
+          answer.append( "," );
+        }
+        answer.append( p.value );
+        p = p.next;
+      }
+      answer.append( "]" );
+      return answer.toString();
+    }
+   
+ public void insertAfter( E obj, LinkedList<E> other ) {
+  
+   
+   // IMPLEMENTATION HERE
+   
+   
+   
+  }
+  
+  
+  
+   
+   
+  }
+
+
+}
+ 

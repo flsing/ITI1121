@@ -1,0 +1,271 @@
+/**
+ * ITI1121A LAB 11
+ * 
+ */
+
+import java.util.NoSuchElementException;
+
+// Stores the bits in reverse order!
+
+public class BitList {
+
+    // useful constants
+
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
+
+    // instance variables
+
+    private Node first;
+
+    // constructors
+
+    public BitList() {  
+        first = null;
+    }
+
+    public BitList( String s ) {
+
+        // pre-condition
+
+        if ( s == null ) {
+            throw new IllegalArgumentException( "null" );
+        }
+
+        for ( int i=0; i < s.length() ; i++ ) {
+            int bit = s.charAt(i) - '0';
+            if ( ( bit != ZERO ) && ( bit != ONE ) ) {
+                throw new IllegalArgumentException( s );
+            }
+            addFirst( bit ); // reverses the order!
+        }
+    }
+
+    public void addFirst( int bit ) {
+
+        if ( ( bit != ZERO ) && ( bit != ONE ) ) {
+            throw new IllegalArgumentException( Integer.toString( bit ) );
+        }
+
+        first = new Node( bit, first );
+    }
+
+    public int removeFirst() {
+
+        if ( first == null ) {
+            throw new NoSuchElementException();
+        }
+
+        int saved = first.bit;
+
+        first = first.next;
+
+        return saved;
+    }
+
+    public void complement() {
+        if ( first == null ) {
+            addFirst( ONE );
+        } else {
+            complement( first );
+        }
+    }
+
+    //PART 1
+    private static void complement( Node p ) {
+      
+      
+      if(p==null){
+        return ;
+      }
+      
+      
+      if(p.bit==ONE){
+        p.bit=ZERO;
+      }else{
+        p.bit=ONE;
+      }
+      
+      //post procession (protection)
+      if(p.next!=null){
+      complement(p.next);
+      }
+      
+    }
+
+
+    // PART 2 
+    public BitList or( BitList other ) {
+
+      //pre conditions
+      if(first==null)
+        throw new IllegalArgumentException("This list is empty");
+      
+      if(other==null)
+        throw new IllegalArgumentException("The other list is empty");
+      
+      
+      
+      BitList result = new BitList();
+      
+      or(result, first, other.first);
+      
+      return result;
+        
+      
+    }
+
+    private static void or( BitList result, Node p, Node q ) {
+
+        // pre-conditions
+
+        if ( p == null && q != null ) {
+            throw new IllegalArgumentException( "this list is shorter" );
+        }
+        if ( p != null && q == null ) {
+            throw new IllegalArgumentException( "this list is longer" );
+        }
+        // base case
+
+        if ( p == null && q == null ) {
+            return;
+        }
+        // recursion
+
+        or( result, p.next, q.next );
+
+        // post-processing
+
+        if ( p.bit == ONE || q.bit == ONE ) {
+            result.addFirst( ONE );
+        } else {
+            result.addFirst( ZERO );
+        }
+    }
+    
+    
+
+    public boolean equals( Object other ) {
+
+        if ( ! ( other instanceof BitList ) ) {
+            return false;
+        }
+
+        return equals( first, ( (BitList) other ).first );
+
+    }
+    
+    // PART 3
+    
+    private static boolean equals( Node p, Node q ) {
+
+    
+      //base cases
+      
+      if(p == null && q!=null)
+        return false; 
+      
+      if(p != null && q==null)
+        return false; 
+      
+      if(p == null && q==null)
+        return true; 
+      
+      //found a mismatch
+      
+      if(p.bit != q.bit)
+        return false; 
+      
+      //recuriion
+      
+      return equals(p.next,q.next);
+      
+      
+    }
+
+    // Iterator method
+    public Iterator iterator() {
+        return new BitListIterator();
+    }
+    //toString to convert to String
+    public String toString() {
+
+        String str = "";
+
+        if ( first == null ) {
+
+            str += ZERO;
+
+        } else {
+
+            Node p = first;
+
+            while (p!=null) {
+                str = p.bit + str; // reverses the order
+                p = p.next;
+            }
+
+        }
+        return str;
+    }
+
+    // The implementation of the nodes (static nested class)
+
+    private static class Node {
+
+        private int bit; // <- NEW
+        private Node next;
+
+        private Node( int bit, Node next ) { // <- ACCORDINGLY ...
+            this.bit = bit;
+            this.next  = next;
+        }
+    }
+
+    // The implementation of the iterators (inner class)
+
+    private class BitListIterator implements Iterator {
+
+        private Node current = null;
+
+        private BitListIterator() {
+            current = null;
+        }
+
+        public boolean hasNext() {
+            return ( ( current == null && first != null )   ||
+                     ( current != null && current.next != null ) );
+        }
+
+        public int next() {
+
+            if ( current == null ) {
+                current = first ;
+            } else {
+                current = current.next ; // move the cursor forward
+            }
+            if ( current == null ) {
+                throw new NoSuchElementException() ;
+            }
+            return current.bit ;
+        }
+
+        public void add( int bit ) {
+
+            if ( ( bit != ZERO ) && ( bit != ONE ) ) {
+                throw new IllegalArgumentException( Integer.toString( bit ) );
+            }
+
+            Node newNode;
+
+            if ( current == null ) {
+                first = new Node( bit, first );
+                current = first;
+            } else {
+                current.next = new Node( bit, current.next );
+                current = current.next;
+            }
+
+        }
+    }
+}
