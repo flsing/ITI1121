@@ -1,0 +1,11 @@
+Public class Combination{
+  
+  //Class Variables
+  private int first = 0;
+  private int second = 0;
+  private int third = 0;
+  
+  //Constructor
+  public Combination(int first, int second, int third){
+    
+    

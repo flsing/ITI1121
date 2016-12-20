@@ -1,0 +1,14 @@
+/* 
+ * Modify this template by
+ * - adding an implementation for findAndReplace, as well as
+ * - adding JavaDoc comments for the method and the class
+ */
+
+public class Utils {
+
+    public static String[] findAndReplace( String[] in, String[] what, String[] with ) {
+
+        return null;
+    }
+
+}

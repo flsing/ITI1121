@@ -1,0 +1,2 @@
+public class CanadianPostalCode extends PostalCode{
+  

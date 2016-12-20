@@ -1,0 +1,7 @@
+public class TestRational{
+  
+  public static void main(String[] args){
+    
+    Rational a = new Rational();
+    Rational b = new Rational();
+    Rational c = new Rational();

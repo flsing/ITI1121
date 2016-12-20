@@ -1,0 +1,18 @@
+public class AnimalMain{
+  
+  public static void main(String[] args){
+    
+    //Let us create our objects
+    
+    Animal dog = new Animal("Toby","Beagle");
+    Animal cat = new Animal("Shadow","Persian");
+    
+    //now we can access the methods of Animal class by using our objects.
+    
+    dog.setAge(5);
+    cat.setAge(1);
+    
+    System.out.println("My Dog's Name: " + dog.getName() + " , Age: " + dog.getAge() + " , Type: " + dog.getType());
+    System.out.println("My Cat's Name: " + cat.getName() + " , Age: " + cat.getAge() + " , Type: " + cat.getType());
+  }
+}
