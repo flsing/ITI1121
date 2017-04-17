@@ -1,0 +1,21 @@
+public class Test1 extends LinkedStack {
+  
+  public static void main(String[] args){
+    LinkedStack<String> t;
+    t= new LinkedStack<String>();
+    LinkedStack<String> r;
+    r = new LinkedStack<String>();
+    //@SuppressWarnings("unchecked")
+    
+    t.push(new String("S"));
+    t.push(new String("q"));
+    t.push(new String("r"));
+    t.push(new String("t"));
+    r.push(null);
+    
+    System.out.println(t.peek());  
+    System.out.println(t.pop());
+   System.out.println(t.peek());  
+   
+  }
+}
